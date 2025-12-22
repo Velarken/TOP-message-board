@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+    <button><a href="/new">Post a new message!</a></button>
+</nav>
+<h1><%= title %></h1>
+<div class="all-messages">
+    <% for (let i = 0 ; i < messages.length ; i++) { %>
+        <div class="message-container">
+            <div class="message-header">
+                <h5 class="message-author"><%= messages[i].user %></h5>
+                <h5><%= messages[i].added %></h5>
+            </div>
+                <p class="message"><%= messages[i].text %></p>
+        </div>
+    <% } %>
+</div>
+</body>
+</html>
