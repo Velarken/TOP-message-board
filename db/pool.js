@@ -1,10 +1,12 @@
 const { Pool } = require('pg');
+require('dotenv').config();
+const {PGHOST,PGDATABASE,PGUSER,PGPASSWORD} = process.env;
 
 module.exports = new Pool({
-    host: 'localhost',
-    user: 'testing',
-    pass: 'npg_lsCE9Jkd0Rqo',
-    database: 'neondb',
-    port: '5432',
-    ssl: 'require'
+    host: PGHOST,
+    user: PGUSER,
+    pass: PGPASSWORD,
+    database: PGDATABASE,
+    port: 5432,
+    ssl: {require: true}
 })
