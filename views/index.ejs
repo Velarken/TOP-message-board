@@ -3,23 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%= title %></title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav>
     <button><a href="/new">Post a new message!</a></button>
+    <form action="/delete" method="post">
+        <button>Delete all messages</button>
+    </form>
 </nav>
 <h1><%= title %></h1>
 <div class="all-messages">
     <% for (let i = 0 ; i < messages.length ; i++) { %>
-        <div class="message-container">
+        <% if (messages[i].is_deleted) { %>
+            <% return %>
+        <% } else { %>
+        <div class="message-container" id=<%= messages[i].id %>>
             <div class="message-header">
-                <h5 class="message-author"><%= messages[i].user %></h5>
-                <h5><%= messages[i].added %></h5>
+                <h5 class="message-author"><%= messages[i].message_author %></h5>
+                <h5><%= messages[i].created_at %></h5>
             </div>
-                <p class="message"><%= messages[i].text %></p>
+                <p class="message"><%= messages[i].message_body %></p>
         </div>
+        <% } %>
     <% } %>
 </div>
 </body>

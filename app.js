@@ -4,9 +4,7 @@ const path = require('node:path');
 const app = express();
 const assetsPath = path.join(__dirname);
 const indexRouter = require('./routers/indexRouter');
-const dotenv = require('dotenv');
-
-const {PGHOST,PGDATABASE,PGUSER,PGPASSWORD,PGSSLMODE,PGCHANNELBINDING,} = process.env;
+require('dotenv').config();
 
 // requests
 app.use(express.urlencoded({extended:true}));

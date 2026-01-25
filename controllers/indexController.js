@@ -1,9 +1,27 @@
 const db = require('../db/queries');
 const { Client } = require('pg');
+const pool = require('../db/pool.js');
 
-async function addMessagePost(req,res) {
-    const client = new Client({
-        connectionString: `postgresql://neondb_owner:npg_ya7MghjXlk9P@ep-winter-art-ah86drya-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require`
-    })
-    const SQL = `SELECT`
+
+async function getAllMessages(req,res) {
+    await db.getAllMessages(req,res);
+}
+async function showNewMessageForm(req,res) {
+  res.render('form')
+}
+async function createNewMessage(req,res) {
+    const { messageContent, author } = req.body;
+    await db.addMessage(messageContent, author)
+    res.redirect('/')
+}
+async function deleteMessages(req,res) {
+    await db.deleteAllMessages();
+    res.redirect('/')
+}
+
+module.exports = {
+    getAllMessages,
+    showNewMessageForm,
+    createNewMessage,
+    deleteMessages
 }
